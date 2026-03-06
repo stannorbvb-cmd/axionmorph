@@ -1,0 +1,352 @@
+@define-color selected-text #d5e86d;
+@define-color text #bdbfad;
+@define-color base #070703;
+@define-color border #909060;
+@define-color foreground #bdbfad;
+@define-color background #070703;
+
+/* ================================================================
+#
+#  ▄▄▄█████▓ ██░ ██ ▓█████  ███▄ ▄███▓▓█████     ▄▄▄▄ ▓██   ██▓   ▓█████▄  ▄▄▄      ▒███████▒ ▄▄▄       ██▓
+#  ▓  ██▒ ▓▒▓██░ ██▒▓█   ▀ ▓██▒▀█▀ ██▒▓█   ▀    ▓█████▄▒██  ██▒   ▒██▀ ██▌▒████▄    ▒ ▒ ▒ ▄▀░▒████▄    ▓██▒
+#  ▒ ▓██░ ▒░▒██▀▀██░▒███   ▓██    ▓██░▒███      ▒██▒ ▄██▒██ ██░   ░██   █▌▒██  ▀█▄  ░ ▒ ▄▀▒░ ▒██  ▀█▄  ▒██▒
+#  ░ ▓██▓ ░ ░▓█ ░██ ▒▓█  ▄ ▒██    ▒██ ▒▓█  ▄    ▒██░█▀  ░ ▐██▓░   ░▓█▄   ▌░██▄▄▄▄██   ▄▀▒   ░░██▄▄▄▄██ ░██░
+#    ▒██▒ ░ ░▓█▒░██▓░▒████▒▒██▒   ░██▒░▒████▒   ░▓█  ▀█▓░ ██▒▓░   ░▒████▓  ▓█   ▓██▒▒███████▒ ▓█   ▓██▒░██░
+#    ▒ ░░    ▒ ░░▒░▒░░ ▒░ ░░ ▒░   ░  ░░░ ▒░ ░   ░▒▓███▀▒ ██▒▒▒     ▒▒▓  ▒  ▒▒   ▓▒█░░▒▒ ▓░▒░▒ ▒▒   ▓▒█░░▓
+#      ░     ▒ ░▒░ ░ ░ ░  ░░  ░      ░ ░ ░  ░   ▒░▒   ░▓██ ░▒░     ░ ▒  ▒   ▒   ▒▒ ░░░▒ ▒ ░ ▒  ▒   ▒▒ ░ ▒ ░
+#    ░       ░  ░░ ░   ░   ░      ░      ░       ░    ░▒ ▒ ░░      ░ ░  ░   ░   ▒   ░ ░ ░ ░ ░  ░   ▒    ▒ ░
+#            ░  ░  ░   ░  ░       ░      ░  ░    ░     ░ ░           ░          ░  ░  ░ ░          ░  ░ ░
+#                                                     ░░ ░         ░                ░
+# ================================================================*/
+
+
+
+/* ================================================================
+   DERIVED SIGNAL PALETTE
+   ================================================================ */
+@define-color border-dim:    alpha(@border, 0.18);
+@define-color border-mid:    alpha(@border, 0.40);
+@define-color border-bright: alpha(@border, 0.85);
+@define-color signal-dim:    alpha(@selected-text, 0.06);
+@define-color signal-mid:    alpha(@selected-text, 0.18);
+@define-color signal-glow:   alpha(@selected-text, 0.35);
+@define-color noise:         alpha(@border, 0.03);
+
+/* ================================================================
+   KEYFRAMES
+   ================================================================ */
+
+/* Outer shell — slow electromagnetic pulse */
+@keyframes em-pulse {
+  0%   { box-shadow:
+           0 0 0 1px alpha(@border, 0.10),
+           0 0 18px alpha(@border, 0.05),
+           0 0 60px alpha(@border, 0.02),
+           inset 0 0 80px alpha(@base, 0.9); }
+  45%  { box-shadow:
+           0 0 0 1px alpha(@border, 0.30),
+           0 0 28px alpha(@border, 0.12),
+           0 0 80px alpha(@border, 0.05),
+           inset 0 0 80px alpha(@base, 0.9); }
+  100% { box-shadow:
+           0 0 0 1px alpha(@border, 0.10),
+           0 0 18px alpha(@border, 0.05),
+           0 0 60px alpha(@border, 0.02),
+           inset 0 0 80px alpha(@base, 0.9); }
+}
+
+/* Border brightness drift */
+@keyframes border-drift {
+  0%   { border-color: alpha(@border, 0.55); }
+  30%  { border-color: alpha(@border, 0.90); }
+  55%  { border-color: alpha(@border, 0.60); }
+  80%  { border-color: alpha(@border, 1.00); }
+  100% { border-color: alpha(@border, 0.55); }
+}
+
+/* Signal lock — selected item glow breathes */
+@keyframes signal-lock {
+  0%   { box-shadow: inset 3px 0 0 @selected-text,
+                     0 0 8px  alpha(@selected-text, 0.08); }
+  50%  { box-shadow: inset 3px 0 0 @selected-text,
+                     0 0 20px alpha(@selected-text, 0.18); }
+  100% { box-shadow: inset 3px 0 0 @selected-text,
+                     0 0 8px  alpha(@selected-text, 0.08); }
+}
+
+/* Search bar active glow */
+@keyframes input-alive {
+  0%   { box-shadow: inset 0 1px 8px alpha(@base, 0.9),
+                     0 0 0px alpha(@selected-text, 0); }
+  50%  { box-shadow: inset 0 1px 8px alpha(@base, 0.9),
+                     0 0 12px alpha(@selected-text, 0.12); }
+  100% { box-shadow: inset 0 1px 8px alpha(@base, 0.9),
+                     0 0 0px alpha(@selected-text, 0); }
+}
+
+/* Scanline crawl */
+@keyframes scanlines {
+  from { background-position: 0 0; }
+  to   { background-position: 0 6px; }
+}
+
+/* Item decode — staggered reveal */
+@keyframes decode {
+  0%   { opacity: 0; letter-spacing: 0.3em; filter: blur(3px); }
+  60%  { opacity: 0.7; letter-spacing: 0.05em; filter: blur(0.5px); }
+  100% { opacity: 1; letter-spacing: 0.02em; filter: blur(0px); }
+}
+
+/* Corner pip blink */
+@keyframes pip-blink {
+  0%, 90%, 100% { opacity: 1; }
+  95%            { opacity: 0; }
+}
+
+/* Top bar sweep — data incoming indicator */
+@keyframes sweep {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 300% 0; }
+}
+
+/* ================================================================
+   WINDOW ROOT
+   ================================================================ */
+window {
+  background: transparent;
+}
+
+/* ================================================================
+   OUTER SHELL
+   ================================================================ */
+window .box-wrapper {
+  background: @background;
+
+  /* Scanline substrate */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 5px,
+      alpha(@border, 0.025) 5px,
+      alpha(@border, 0.025) 6px
+    );
+
+  padding: 16px 18px 14px;
+  border: 1px solid @border;
+  border-top: 2px solid @border;
+  border-radius: 3px;
+  min-width: 540px;
+
+  animation:
+    em-pulse    4s ease-in-out infinite,
+    border-drift 7s ease-in-out infinite,
+    scanlines    0.18s linear infinite;
+}
+
+/* Top edge data-sweep indicator */
+window .box-wrapper::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin: -16px -18px 14px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    alpha(@selected-text, 0.0) 20%,
+    alpha(@selected-text, 0.6) 50%,
+    alpha(@selected-text, 0.0) 80%,
+    transparent 100%
+  );
+  background-size: 60% 100%;
+  animation: sweep 4s ease-in-out infinite;
+}
+
+/* Corner pips — classified document feel */
+window .box-wrapper::after {
+  content: "◆";
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 6px;
+  color: @selected-text;
+  opacity: 0.6;
+  animation: pip-blink 3s ease-in-out infinite;
+}
+
+/* ================================================================
+   INNER FRAME
+   ================================================================ */
+window .content {
+  border: 1px solid alpha(@border, 0.15);
+  border-top: 1px solid alpha(@border, 0.35);
+  border-radius: 1px;
+  padding: 8px 6px 6px;
+
+  /* Subtle vignette */
+  box-shadow: inset 0 0 60px alpha(@base, 0.5);
+}
+
+/* ================================================================
+   SEARCH BAR
+   ================================================================ */
+window .search-container {
+  background:
+    linear-gradient(
+      180deg,
+      alpha(@border, 0.07) 0%,
+      alpha(@border, 0.03) 100%
+    );
+  border: 1px solid alpha(@border, 0.45);
+  border-bottom: 1px solid alpha(@border, 0.25);
+  border-radius: 2px;
+  margin-bottom: 12px;
+  animation: input-alive 3.5s ease-in-out infinite;
+}
+
+window .input {
+  color: @selected-text;
+  caret-color: @selected-text;
+  padding: 7px 10px;
+  font-weight: 700;
+  outline: none;
+  letter-spacing: 0.05em;
+}
+
+window .placeholder {
+  color: @text;
+  opacity: 0.2;
+  letter-spacing: 0.08em;
+  font-style: normal;
+}
+
+/* ================================================================
+   LIST ITEMS
+   ================================================================ */
+child {
+  background: transparent;
+  padding: 4px 8px;
+  margin: 2px 0;
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  border-radius: 2px;
+  transition:
+    background   100ms ease,
+    border-color 100ms ease,
+    box-shadow   100ms ease,
+    padding-left 100ms ease;
+
+  animation: decode 180ms ease both;
+}
+
+/* Stagger each of the first 12 items */
+child:nth-child(1)  { animation-delay: 0ms; }
+child:nth-child(2)  { animation-delay: 25ms; }
+child:nth-child(3)  { animation-delay: 50ms; }
+child:nth-child(4)  { animation-delay: 75ms; }
+child:nth-child(5)  { animation-delay: 100ms; }
+child:nth-child(6)  { animation-delay: 125ms; }
+child:nth-child(7)  { animation-delay: 150ms; }
+child:nth-child(8)  { animation-delay: 175ms; }
+child:nth-child(9)  { animation-delay: 200ms; }
+child:nth-child(10) { animation-delay: 225ms; }
+child:nth-child(11) { animation-delay: 250ms; }
+child:nth-child(12) { animation-delay: 275ms; }
+
+/* ================================================================
+   HOVER
+   ================================================================ */
+child:hover {
+  background: alpha(@border, 0.07);
+  border-color: alpha(@border, 0.20);
+  border-left-color: alpha(@border, 0.60);
+  padding-left: 11px;
+  box-shadow:
+    inset 2px 0 0 alpha(@border, 0.4),
+    0 0 10px alpha(@border, 0.04);
+}
+
+/* ================================================================
+   SELECTED
+   ================================================================ */
+child:selected {
+  background:
+    linear-gradient(
+      90deg,
+      alpha(@selected-text, 0.08) 0%,
+      alpha(@selected-text, 0.02) 60%,
+      transparent 100%
+    );
+  border-color: alpha(@selected-text, 0.25);
+  border-left-color: @selected-text;
+  border-radius: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 12px;
+
+  animation: signal-lock 2.5s ease-in-out infinite;
+}
+
+/* ================================================================
+   ICON
+   ================================================================ */
+child image {
+  margin-left: 2px;
+  margin-right: 12px;
+  opacity: 0.55;
+  transition: opacity 100ms ease;
+}
+
+child:hover image {
+  opacity: 0.80;
+}
+
+child:selected image {
+  opacity: 1.0;
+}
+
+/* ================================================================
+   APP NAME
+   ================================================================ */
+child label {
+  color: @foreground;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: color 100ms ease, letter-spacing 100ms ease;
+}
+
+child:hover label {
+  color: alpha(@foreground, 0.9);
+  letter-spacing: 0.03em;
+}
+
+/* ================================================================
+   CATEGORY / SECONDARY
+   ================================================================ */
+child label.secondary {
+  color: alpha(@text, 0.38);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.82em;
+  letter-spacing: 0.10em;
+  transition: color 100ms ease;
+}
+
+child:hover label.secondary {
+  color: alpha(@text, 0.55);
+}
+
+/* ================================================================
+   SELECTED TEXT
+   ================================================================ */
+child:selected label {
+  color: @selected-text;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+child:selected label.secondary {
+  color: alpha(@selected-text, 0.45);
+  letter-spacing: 0.12em;
+  font-size: 0.80em;
+}
