@@ -1,6 +1,6 @@
 # AxionMorph
 
-AxiomMorph is a futuristic Hyprland theme inspired by early **2000s blob morphism**, experimental interface design, and neon plasma aesthetics.  
+AxionMorph is a futuristic Hyprland theme inspired by early **2000s blob morphism**, experimental interface design, and neon plasma aesthetics.  
 It blends **liquid lime gradients**, **technical grid structures**, and **minimal cyber UI elements** to create a workspace that feels like a concept interface from a retro-future operating system.
 
 The theme is designed for **Omarchy / Hyprland setups** and focuses on visual coherence across the desktop environment.
@@ -17,8 +17,6 @@ The theme is designed for **Omarchy / Hyprland setups** and focuses on visual co
 <img width="1920" height="1080" alt="screenshot-2026-03-06_23-13-22" src="https://github.com/user-attachments/assets/eed01f74-10bc-4b31-a29d-fefdf7bb83b7" />
 
 <img width="1920" height="1080" alt="screenshot-2026-03-06_23-13-36" src="https://github.com/user-attachments/assets/3e1c4d12-8fa3-4297-afd1-7facfc4467a5" />
-
----
 
 ## Design Inspiration
 
