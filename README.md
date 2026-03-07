@@ -10,7 +10,10 @@ The theme is designed for **Omarchy / Hyprland setups** and focuses on visual co
 ## Preview / Screenshot
 <img width="2560" height="1584" alt="preview" src="https://github.com/user-attachments/assets/a80063c2-d2b5-4dcd-9ba8-e3eccbeed66b" />
 
+<img width="2560" height="1600" alt="screenshot-2026-03-07_21-33-34" src="https://github.com/user-attachments/assets/1b3273b5-66f9-4330-bd78-52d2ef7e602c" />
+
 <img width="2560" height="1600" alt="screenshot-2026-03-06_22-36-07" src="https://github.com/user-attachments/assets/1ab2fe63-5a34-4f63-8067-ef2490f3b07e" />
+
 ---
 
 ## Walker Preview
